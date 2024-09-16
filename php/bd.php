@@ -3,7 +3,7 @@
 
 $host='localhost';
 $dbname='livro';
-$usernme='root';
+$username='root';
 $password='';
 
 
@@ -13,7 +13,7 @@ $con=new mysqli($host,$username,$password,$dbname);
 
 //verfica se tem erro na conexão
 
-if($con->conect_error){
+if($con->connect_error){
     die("falha na conexão".$con->conect_error);
 }
 echo "conexão realizada com sucesso";
@@ -24,10 +24,13 @@ $sql="INSERT INTO autores (nome, nacionalidade, dataNascimento) VALUES ('Machado
     
 //executo a instrucao e verifico erro
 
-if($conn->query($sql)==TRUE){
+if($con->query($sql)==TRUE){
     ECHO "DADOS INSERIDOS COM  SUCESSO. ";
 
 }
 else {
-    echo"Erro ao inserir dados.";
+    echo"Erro ao inserir dados.".$con->error;
 }
+$con->close()
+
+?>
